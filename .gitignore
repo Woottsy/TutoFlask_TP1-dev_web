@@ -2,3 +2,6 @@ __pycache__/views.cpython-312.pyc
 monApp/__pycache__/__init__.cpython-312.pyc
 monApp/__pycache__/app.cpython-312.pyc
 monApp/__pycache__/views.cpython-312.pyc
+__pycache__/config.cpython-312.pyc
+.gitignore
+monApp/__pycache__/about.cpython-312.pyc

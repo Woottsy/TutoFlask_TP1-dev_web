@@ -4,5 +4,9 @@ from .app import app
 def index():
     return "Hello, World!"
 
+@app.route('/about')
+def about():
+    return app.config['ABOUT']
+
 if __name__ == '__main__':
     app.run()
