@@ -5,3 +5,7 @@ monApp/__pycache__/views.cpython-312.pyc
 __pycache__/config.cpython-312.pyc
 .gitignore
 monApp/__pycache__/about.cpython-312.pyc
+monApp/__pycache__/commands.cpython-312.pyc
+.gitignore
+monApp/__pycache__/models.cpython-312.pyc
+monApp/data/data.yml

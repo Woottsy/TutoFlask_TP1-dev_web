@@ -11,17 +11,17 @@ class Auteur(db.Model):
 
 class Livre(db.Model):
     idL = db.Column(db.Integer, primary_key=True)
-    Prix = db.Column(db.decimal(10, 2))
+    Prix = db.Column(db.Double)
     Titre = db.Column(db.String(255))
     Url = db.Column(db.String(255))
     Img = db.Column(db.String(255))
     auteur_id = db.Column(db.Integer, db.ForeignKey("auteur.idA"))
     auteur = db.relationship("Auteur", backref=db.backref("livres", lazy="dynamic"))
 
-    def __init__(self, idL, Prix, Titre, Url, Img):
-        self.idL = idL
+    def __init__(self, Prix, Titre, Url, Img, auteur_id):
         self.Prix = Prix
         self.Titre = Titre
         self.Url = Url
         self.Img = Img
+        self.auteur_id = auteur_id
         
