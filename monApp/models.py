@@ -7,6 +7,9 @@ class Auteur(db.Model):
 
     def __init__(self, Nom):
         self.Nom = Nom
+    
+    def __repr__(self):
+        return "<Auteur (%d) %s" % (self.idA, self.Nom)
 
 
 class Livre(db.Model):
@@ -24,4 +27,6 @@ class Livre(db.Model):
         self.Url = Url
         self.Img = Img
         self.auteur_id = auteur_id
-        
+    
+    def __repr__(self):
+        return "<Livre (%d) %s" % (self.idL, self.Titre)
