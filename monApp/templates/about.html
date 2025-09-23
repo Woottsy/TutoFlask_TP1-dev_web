@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="{{url_for ('static', filename = 'style.css')}}">
-        <title>{{Title}}</title>
-    </head>
-    <body>
-        <h1>Bienvenue sur la page à propos de mon site</h1>
-        <p>avez vous déjà vu un {{name}} ?</p>
-        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">voici</a>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block main %}
+<body>
+    <h1>Bienvenue sur la page à propos de mon site</h1>
+    <p>avez vous déjà vu un {{name}} ?</p>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">voici</a>
+</body>
+{% endblock %}
