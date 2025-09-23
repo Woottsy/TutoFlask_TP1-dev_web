@@ -1,5 +1,6 @@
 from .app import app
 from flask import render_template, request
+from monApp.models import Auteur, Livre
 @app.route('/')
 @app.route('/index/')
 
@@ -20,5 +21,11 @@ def about():
 @app.route('/contacts/')
 def contacts():
     return render_template("contact.html", title="Dans les contacts des abysses", name="Cristophe", var1="pain")
+
+@app.route('/auteurs/')
+def getAuteurs():
+    lesAuteurs = Auteur.query.all()
+    return render_template('auteurs_list.html', title="R3.01 Dev Web avec Flask", auteurs=lesAuteurs)
+
 if __name__ == '__main__':
     app.run()
