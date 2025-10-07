@@ -1,7 +1,7 @@
 from .app import app, db
 from flask import render_template, request, url_for, redirect
 from monApp.models import Auteur, Livre
-from monApp.forms import FormAuteur
+from monApp.forms import FormAuteur, FormLivre
 
 
 @app.route("/")
@@ -120,6 +120,39 @@ def getLivres():
     return render_template(
         "livres_list.html", title="R3.01 Dev Web avec Flask", livres=lesLivres
     )
+
+@app.route("/livres/<idL>/update/")
+def updateLivre(idL):
+    unLivre = Livre.query.get(idL)
+    unForm = FormLivre(idL=unLivre.idL, Titre=unLivre.Titre, prix=unLivre.Prix, idA=unLivre.auteur_id)
+    return render_template(
+        "livre_update.html", selectedLivre=unLivre, updateForm=unForm
+    )
+    
+@app.route("/livres/save/", methods=["POST"])
+def saveLivre():
+    updatedLivre = None
+    unForm = FormLivre()
+    # recherche du livre à modifier
+    idL = int(unForm.idL.data)
+    updatedLivre = Livre.query.get(idL)
+    # si les données saisies sont valides pour la mise à jour
+    if unForm.validate_on_submit():
+        updatedLivre.Titre = unForm.Titre.data
+        updatedLivre.Prix = unForm.Prix.data
+        updatedLivre.Img = unForm.Img.data
+        updatedLivre.Auteur_id = unForm.Auteur_id.data
+        db.session.commit()
+        return redirect(url_for("viewLivre", idL=updatedLivre.idL))
+    return render_template(
+        "livre_update.html", selectedLivre=updatedLivre, updateForm=unForm
+    )
+
+@app.route("/livres/<idL>/view/")
+def viewLivre(idL):
+    unLivre = Livre.query.get(idL)
+    unForm = FormLivre(idL=unLivre.idL, Titre=unLivre.Titre, Prix=unLivre.Prix, Img=unLivre.Img, Auteur_id=unLivre.auteur_id)
+    return render_template("livre_view.html", selectedLivre=unLivre, viewForm=unForm)
 
 
 if __name__ == "__main__":

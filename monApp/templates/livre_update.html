@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Modification sur le livre {{ selectedLivre.Titre }}</h1>
+<form role="form" method="POST" action="{{ url_for ('saveLivre') }}">
+    {{ updateForm.hidden_tag () }}
+    <div class = "btn-group mb-3">
+        {{ updateForm.Titre.label }}
+        {{ updateForm.Titre(size =50, class_="form-control") }}
+    </div>
+    <div class = "btn-group mb-3">
+        {{ updateForm.Prix.label }}
+        {{ updateForm.Prix(class_="form-control") }}
+    </div>
+    <div class = "btn-group mb-3">
+        {{ updateForm.Img.label }}
+        {{ updateForm.Img(size =100, class_="form-control") }}
+    </div>
+    <div class = "btn-group mb-3">
+        {{ updateForm.Auteur_id.label }}
+        {{ updateForm.Auteur_id(size =20, class_="form-control") }}
+    </div>
+    <input type="submit" class="btn btn-success" value="Enregistrer">
+    <a href="{{ url_for('getLivres') }}" class="btn btn-secondary">Retour</a>
+</form>
+{% endblock %}
